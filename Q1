@@ -1,0 +1,43 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int arr[100], n = 0, choice, value, i, j;
+    while (true) {
+        cout << "\n1.Insert\n2.Delete\n3.Search\n4.Display\n5.Sort\n6.Exit\n";
+        cin >> choice;
+        if (choice == 1) {
+            cin >> value;
+            arr[n++] = value;
+        } else if (choice == 2) {
+            cin >> value;
+            for (i = 0; i < n; i++) {
+                if (arr[i] == value) {
+                    for (j = i; j < n - 1; j++)
+                        arr[j] = arr[j + 1];
+                    n--;
+                    break;
+                }
+            }
+        } else if (choice == 3) {
+            cin >> value;
+            bool found = false;
+            for (i = 0; i < n; i++) {
+                if (arr[i] == value) {
+                    found = true;
+                    break;
+                }
+            }
+            cout << (found ? "Found\n" : "Not Found\n");
+        } else if (choice == 4) {
+            for (i = 0; i < n; i++) cout << arr[i] << " ";
+            cout << endl;
+        } else if (choice == 5) {
+            sort(arr, arr + n);
+        } else if (choice == 6) {
+            break;
+        }
+    }
+    return 0;
+}
